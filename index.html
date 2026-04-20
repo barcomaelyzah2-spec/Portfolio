@@ -276,175 +276,28 @@
     align-items: center;
     font-size: 0.8rem;
 }
-       /* ===== CHATBOT CONTAINER ===== */
-.chatbot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* CHAT BOX */
-.chat-box {
-    display: none; 
-    flex-direction: column;
-    width: 320px;
-    height: 450px;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(15px);
-    border-radius: 15px;
-    overflow: hidden;
-    margin-bottom: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    border: 1px solid #2e3c50;
-}
-
-/* HEADER */
-.chat-header {
-    background: #2e3c50;
-    padding: 15px;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* BODY/MESSAGES */
-.chat-body {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    color: white;
-}
-
-.message {
-    padding: 10px 14px;
-    border-radius: 12px;
-    max-width: 85%;
-    font-size: 14px;
-    line-height: 1.4;
-    animation: chatFadeIn 0.3s ease forwards;
-}
-
-.bot {
-    background: #1e293b;
-    align-self: flex-start;
-    border-bottom-left-radius: 2px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.user {
-    background: #2e3c50;
-    align-self: flex-end;
-    border-bottom-right-radius: 2px;
-}
-
-/* FOOTER / INPUT */
-.chat-footer {
-    display: flex;
-    padding: 15px;
-    gap: 8px;
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.chat-footer input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #2e3c50;
-    background: #1e293b;
-    color: white;
-    outline: none;
-}
-
-.chat-footer button {
-    background: #2e3c50;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.chat-footer button:hover {
-    background: #3d4f6a;
-}
-
-/* TOGGLE BUTTON */
-.chat-toggle {
-    background: #2e3c50;
-    border: none;
-    border-radius: 30px;
-    padding: 0 25px;
-    height: 55px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: transform 0.2s, background 0.3s;
-}
-
-.chat-toggle:hover {
-    transform: scale(1.05);
-    background: #3d4f6a;
-}
-
-/* QUICK ACTION BUTTONS */
-.quick-btn-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 5px;
-}
-
-.quick-btn {
-    background: transparent;
-    border: 1px solid #2e3c50;
-    color: #8ea1b8;
-    border-radius: 20px;
-    padding: 6px 12px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.quick-btn:hover {
-    background: #2e3c50;
-    color: white;
-}
-
-/* ANIMATIONS & SCROLLBAR */
+       /* Smooth Fade and Slide for Messages */
 @keyframes chatFadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.chat-body::-webkit-scrollbar {
-    width: 5px;
+.message {
+    animation: chatFadeIn 0.3s ease-out forwards;
+    word-wrap: break-word;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Scrollbar styling for a cleaner look */
+.chat-body::-webkit-scrollbar {
+    width: 4px;
+}
+.chat-body::-webkit-scrollbar-track {
+    background: transparent;
+}
 .chat-body::-webkit-scrollbar-thumb {
     background: #2e3c50;
     border-radius: 10px;
-}
-
-/* MOBILE RESPONSIVENESS */
-@media (max-width: 480px) {
-    .chat-box {
-        width: 90vw;
-        height: 60vh;
-        bottom: 80px;
-        right: 5vw;
-    }
 }
         /* Floating Scroll Top Button */
         #scrollTop {
