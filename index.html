@@ -299,6 +299,115 @@
     background: #2e3c50;
     border-radius: 10px;
 }
+        /* Chatbot Floating Container */
+.chatbot {
+    position: fixed;
+    bottom: 30px;
+    right: 80px; /* Offset to not overlap the Scroll Top button */
+    z-index: 3000;
+}
+
+/* Chat Toggle Button */
+.chat-toggle {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.chat-toggle:hover {
+    background: #1abc9c;
+    transform: scale(1.05);
+}
+
+/* Chat Window Box */
+.chat-box {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.chat-header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f4f7f6;
+}
+
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.chat-footer button {
+    background: #1abc9c;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Message Bubbles */
+.message {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: #2c3e50;
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background: #e1e1e1;
+    color: #333;
+    border-bottom-left-radius: 2px;
+}
         /* Floating Scroll Top Button */
         #scrollTop {
             position: fixed;
@@ -392,7 +501,8 @@
             <h2 class="section-title">About Me</h2>
             <p>I am an IT student at Central Philippine State University–Moises Padilla Campus with a passion for building functional, visually striking digital solutions. By combining technical expertise in C++, JavaScript, and PHP with a strong foundation in design.
 <br><br>
-Beyond development, I leverage tools like Figma, Adobe Photoshop, and Adobe Premiere Pro to bring creative ideas to life. Whether I am prototyping e-commerce interfaces or crafting multimedia content, I am dedicated to creating impactful, user-centric projects that merge functionality with artistic design.</p>
+Beyond development, I leverage tools like Figma, Adobe Photoshop, and Adobe Premiere Pro to bring creative ideas to life. Whether I am prototyping e-commerce interfaces or crafting multimedia content, I am dedicated to creating impactful, user-centric projects that merge functionality with artistic design. 
+                <br><br></p>
         </div>
     </section>
 
@@ -663,6 +773,18 @@ function addMessage(text, sender) {
     msg.innerText = text;
     chatBody.appendChild(msg);
     chatBody.scrollTop = chatBody.scrollHeight;
+}
+        function toggleChat() {
+    // Check current display style
+    const isVisible = window.getComputedStyle(chatBox).display === "flex";
+    
+    if (isVisible) {
+        chatBox.style.display = "none";
+    } else {
+        chatBox.style.display = "flex";
+        // Focus input automatically when opened
+        setTimeout(() => document.getElementById("userInput").focus(), 100);
+    }
 }
 
 // Improved bot reply with a "natural" feeling
