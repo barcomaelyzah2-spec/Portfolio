@@ -693,6 +693,10 @@ Beyond development, I leverage tools like Figma, Adobe Photoshop, and Adobe Prem
                         <i class="fas fa-check-circle"></i>
                         <a href="https://www.figma.com/proto/24Iir7s3JTOxc0ycbqySKN/Food-website" target="_blank">Figma E-Commerce</a>
                     </li>
+                     <li>
+                        <i class="fas fa-check-circle"></i>
+                        <a href="https://barcomaelyzah2-spec.github.io/Simulation-/" target="_blank">Simulation Project</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -804,98 +808,100 @@ Beyond development, I leverage tools like Figma, Adobe Photoshop, and Adobe Prem
     </footer>
 
     <script>
-    const chatbotToggler = document.querySelector(".chatbot-toggler");
-const chatInput = document.querySelector(".chat-input textarea");
-const sendChatBtn = document.querySelector(".chat-input span");
-const chatbox = document.querySelector(".chatbox");
+    const chatBox = document.getElementById("chatBox");
+const chatBody = document.getElementById("chatBody");
 
-// --- DRAGGABLE LOGIC ---
-let isDragging = false;
-let offsetX, offsetY;
+// --- KNOWLEDGE BASE: Update this to match your actual content ---
+const elyzaData = {
+    about: "Elyzah is a 2nd-year BSIT student at CPSU Moises Padilla. She specializes in bridging the gap between technical web development and creative design.",
+    skills: "Technical Skills: HTML, CSS, JavaScript, PHP, and C++. Creative Tools: Adobe Photoshop, Premiere Pro, Figma, and Canva.",
+    projects: "Key projects include: A responsive Personal Portfolio, T-shirt layout designs, Music Vedio and Short Film using Adobe Premier Pro, Product design and a Barangay Household Registry and Populaion Simulation System.",
+    contact: "You can reach Elyzah via email at elyzahpearlbarcoma@gmail.com or through the contact form on this page.",
+    greet: "Hello! I'm Elyzah's AI. I can tell you about her projects, skills, or how to contact her. What's on your mind?",
+    thanks: "You're very welcome! Is there anything else you'd like to know about Elyzah's work?"
+};
 
-chatbotToggler.addEventListener("mousedown", (e) => {
-    isDragging = false; // Reset dragging flag on click
-    offsetX = e.clientX - chatbotToggler.getBoundingClientRect().left;
-    offsetY = e.clientY - chatbotToggler.getBoundingClientRect().top;
-    
-    const onMouseMove = (e) => {
-        isDragging = true; // If the mouse moves, we are dragging
-        chatbotToggler.style.left = `${e.clientX - offsetX}px`;
-        chatbotToggler.style.top = `${e.clientY - offsetY}px`;
-        chatbotToggler.style.right = 'auto'; // Disable default right/bottom positioning
-        chatbotToggler.style.bottom = 'auto';
-    };
-
-    document.addEventListener("mousemove", onMouseMove);
-
-    document.addEventListener("mouseup", () => {
-        document.removeEventListener("mousemove", onMouseMove);
-    }, { once: true });
-});
-
-// Prevent the chat from toggling if the user was just dragging the icon
-chatbotToggler.addEventListener("click", (e) => {
-    if (isDragging) {
-        e.preventDefault();
-    } else {
-        document.body.classList.toggle("show-chatbot");
-    }
-});
-
-// --- CHAT LOGIC (Integrated CV & Portfolio) ---
-const createChatLi = (message, className) => {
-    const chatLi = document.createElement("li");
-    chatLi.classList.add("chat", className);
-    let chatContent = className === "outgoing" ? `<p></p>` : `<span class="fas fa-robot"></span><p></p>`;
-    chatLi.innerHTML = chatContent;
-    chatLi.querySelector("p").textContent = message;
-    return chatLi;
+function toggleChat() {
+    chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
 }
 
-const handleChat = () => {
-    const userMessage = chatInput.value.trim().toLowerCase();
-    if(!userMessage) return;
-    chatInput.value = "";
+function addMessage(text, sender) {
+    const msg = document.createElement("div");
+    msg.classList.add("message", sender);
+    msg.innerText = text;
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
 
-    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-    
+// Improved bot reply with a "natural" feeling
+function botReply(text) {
+    const msg = document.createElement("div");
+    msg.classList.add("message", "bot");
+    msg.innerText = "..."; // Temporary typing indicator
+    chatBody.appendChild(msg);
+
     setTimeout(() => {
-        let response = "I'm not sure, but Elyzah is an IT student skilled in development and design! ";
-
-        if (userMessage.includes("who") || userMessage.includes("about")) {
-            response = "Elyzah Pearl L. Barcoma is a 2nd-year BSIT student at CPSU Moises Padilla Campus. ";
-        } 
-        else if (userMessage.includes("skill") || userMessage.includes("tech")) {
-            response = "She is skilled in HTML, CSS, JavaScript, and UI/UX Design. ";
-        }
-        else if (userMessage.includes("honor") || userMessage.includes("gwa")) {
-            response = "She earned 'With Honors' with a GWA of 1.56 during her first year. ";
-        }
-        else if (userMessage.includes("project") || userMessage.includes("work")) {
-            response = "Her projects include music videos, short stories, and birthday tarpaulin designs. ";
-        }
-        else if (userMessage.includes("contact") || userMessage.includes("email")) {
-            response = "You can reach her at elyzahpearlbarcoma@gmail.com or +63 951 068 5045. ";
-        }
-        else if (userMessage.includes("cert") || userMessage.includes("train")) {
-            response = "She has certifications in CISCO Networking Fundamentals and IT Systemic Solutions. ";
-        }
-        else if (userMessage.includes("Hi") || userMessage.includes("train")) {
-            response = "Hello! Good day😁";
-        }
-
-        chatbox.appendChild(createChatLi(response, "incoming"));
-        chatbox.scrollTo(0, chatbox.scrollHeight);
-    }, 600);
+        msg.innerText = "";
+        let i = 0;
+        const typing = setInterval(() => {
+            msg.textContent += text.charAt(i);
+            i++;
+            if (i >= text.length) {
+                clearInterval(typing);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        }, 15);
+    }, 500); // Small delay to simulate thinking
 }
 
-sendChatBtn.addEventListener("click", handleChat);
-chatInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        handleChat();
+function handleInput(input) {
+    const text = input.toLowerCase();
+    addMessage(input, "user");
+
+    // Logic Tree for "Smart" matching
+    if (text.includes("hi") || text.includes("hello") || text.includes("hey")) {
+        botReply(elyzaData.greet);
+    } 
+    else if (text.includes("about") || text.includes("who") || text.includes("background")) {
+        botReply(elyzaData.about);
+    } 
+    else if (text.includes("skill") || text.includes("tech") || text.includes("language") || text.includes("know")) {
+        botReply(elyzaData.skills);
+    } 
+    else if (text.includes("project") || text.includes("work") || text.includes("portfolio") || text.includes("output")) {
+        botReply(elyzaData.projects);
+    } 
+    else if (text.includes("contact") || text.includes("email") || text.includes("reach") || text.includes("message")) {
+        botReply(elyzaData.contact);
     }
+    else if (text.includes("thank") || text.includes("cool") || text.includes("nice")) {
+        botReply(elyzaData.thanks);
+    }
+    else {
+        botReply("I'm not quite sure about that. Try asking about Elyzah's 'skills', 'projects', or 'contact info'.");
+    }
+}
+
+function sendMessage() {
+    const inputField = document.getElementById("userInput");
+    const text = inputField.value.trim();
+    if (text) {
+        handleInput(text);
+        inputField.value = "";
+    }
+}
+
+// Allow "Enter" key to send messages
+document.getElementById("userInput").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
 });
+
+window.onload = () => {
+    setTimeout(() => {
+        botReply("Hi! I'm Elyzah's virtual assistant. Ask me anything about her work!");
+        // showQuickButtons(); // Optional: Call this if you want the buttons to appear after intro
+    }, 1000);
+};
         // --- 3. FORM SUBMISSION WITH TOAST NOTIFICATION ---
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent page reload
