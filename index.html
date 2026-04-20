@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPB Portfolio | Elyzah Pearl Barcoma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #C4BEBE;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+        
+        
+
+        /* Fixed Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2c3e50;
+            color: #fff;
+            padding: 1rem 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links li a:hover {
+            color: #1abc9c;
+        }
+
+        /* Home Section */
+        .home-hero {
+            padding: 140px 0 80px 0;
+            background: linear-gradient(135deg, #f4f7f6 0%, #e9eeee 100%);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 225px;
+            height: 230px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #2C3E50;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: #2C3E50;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2C3E50;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2C3E50;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .bg-light {
+            background-color: #f9f9f9;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: #2c3e50;
+            text-align: left;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #2C3E50;
+            margin-top: 8px;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: #2C3E50;
+            margin-bottom: 1.5rem;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Outputs List */
+        .output-list {
+            list-style: none;
+        }
+
+        .output-list li {
+            padding: 1rem;
+            background: #fff;
+            margin-bottom: 0.5rem;
+            border-left: 5px solid #1abc9c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-links a {
+        text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;
+        padding: 15px; border-radius: 8px; background: rgba(128,128,128,0.1); transition: 0.3s;
+    }
+    .contact-links a:hover { transform: translateX(10px); color: #1abc9c; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+        .feedback-form input, .feedback-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .feedback-form input:focus, .feedback-form textarea:focus {
+            border-color: #1abc9c;
+        }
+        /* AI Chatbot Styles */
+.chatbot-toggler {
+    position: fixed;
+    bottom: 30px;
+    right: 85px; /* Placed next to your scroll button */
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #2c3e50;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    z-index: 2000;
+}
+
+.chatbot {
+    position: fixed;
+    right: 35px;
+    bottom: 95px;
+    width: 350px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5);
+    overflow: hidden;
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.1s ease;
+    z-index: 2000;
+}
+
+.show-chatbot .chatbot {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.chatbot header {
+    background: #2c3e50;
+    padding: 15px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.chatbot .chatbox {
+    height: 300px;
+    overflow-y: auto;
+    padding: 15px 20px 70px;
+}
+
+.chatbox .chat {
+    display: flex;
+    list-style: none;
+}
+
+.chatbox .incoming span {
+    height: 32px;
+    width: 32px;
+    color: #fff;
+    align-self: flex-end;
+    background: #1abc9c;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 4px;
+    margin: 0 10px 7px 0;
+}
+
+.chatbox .chat p {
+    color: #fff;
+    max-width: 75%;
+    font-size: 0.95rem;
+    padding: 12px 16px;
+    border-radius: 10px 10px 0 10px;
+    background: #2c3e50;
+}
+
+.chatbox .incoming p {
+    color: #333;
+    background: #f2f2f2;
+    border-radius: 10px 10px 10px 0;
+}
+
+.chatbot .chat-input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    background: #fff;
+    padding: 5px 20px;
+    border-top: 1px solid #ccc;
+}
+
+.chat-input textarea {
+    height: 40px;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 10px 0;
+    font-size: 0.95rem;
+}
+
+        /* Floating Scroll Top Button */
+        #scrollTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1abc9c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        #scrollTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        /*output*/
+        .output-list li a {
+    text-decoration: none;
+    color: #2C3E50;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.output-list li a:hover {
+    color: #1abc9c;
+}
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-container, .contact-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section-title { text-align: center; }
+            .section-title::after { margin: 8px auto 0 auto; }
+            .nav-links { display: none; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><strong>EPB</strong> Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="home-hero">
+        <div class="container hero-container">
+            <div class="profile-container">
+                <img src="/Profile/Messenger_creation_47DA4367-A52A-41E5-8169-ADFB19C1F8A8.jpeg" alt="Elyzah Pearl Barcoma" class="profile-img">
+            </div>
+            <div class="hero-content">
+                <h1>Hi, I’m Elyzah Pearl Barcoma</h1>
+                <p>IT Student of CPSU Moises Padilla</p>
+                <a href="https://drive.google.com/file/d/1Z6bbCiRcEQUH7CQ0RD-gafOezdt7_QBG/view?usp=drivesdk" download class="btn"><i class="fas fa-download"></i> Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p>I am an IT student at Central Philippine State University–Moises Padilla Campus with a passion for building functional, visually striking digital solutions. By combining technical expertise in C++, JavaScript, and PHP with a strong foundation in design.
+<br><br>
+Beyond development, I leverage tools like Figma, Adobe Photoshop, and Adobe Premiere Pro to bring creative ideas to life. Whether I am prototyping e-commerce interfaces or crafting multimedia content, I am dedicated to creating impactful, user-centric projects that merge functionality with artistic design.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="/Skills /Messenger_creation_0B42EA4A-94B1-4A97-8773-59A2C6870E1E.jpeg" alt="Adobe Photoshop" class="skill-img">
+                    <h3>Adobe Photoshop</h3>
+                    <p>Creative graphic editing and layout design.</p>
+                </div>
+
+                <div class="card">
+                    <img src="/Skills /B_20250131_103635_0000.jpg" alt="Infographics" class="skill-img">
+                    <h3>Canva Infographic Design.</h3>
+                    <p>Clean and engaging visual storytelling about baby boomers.</p>
+                </div>
+
+                <div class="card">
+                    <img src="/Skills /Messenger_creation_4AFA7003-9A0B-4737-B0F1-ABFD8269DF64.jpeg" alt="Figma" class="skill-img">
+                    <h3>Figma E-Commers UI DEsign,</h3>
+                    <p>User friendly and modern interface design.</p>
+                </div>
+                <div class="card">
+                    <img src="/Skills /Messenger_creation_70105934-7B58-48DF-9AD3-C06AC439031B.jpeg" alt="Microsoft Excel" class="skill-img">
+                    <h3>Microsoft Excel Activity</h3>
+                    <p>Automated grading system using formulas and data.</p>
+                </div>
+                    <div class="card">
+                    <img src="/Skills /Screenshot_20251028-203259_1.png" alt="Adobe Premiere" class="skill-img">
+                    <h3>Adobe Premiere Pro Project.</h3>
+                    <p>Video editing and production.</p>
+                </div>
+                    <div class="card">
+                    <img src="/Skills /Screenshot_20260418-123059.png" alt="HTML" class="skill-img">
+                    <h3>Html Project</h3>
+                    <p>Structured and responsive web development.</p>
+                    </div>
+      
+                    <div class="card">
+                    <img src="/Skills /Screenshot_20251028-212737.png" alt="Adobe Premiere" class="skill-img">
+                    <h3>JavaScript Activity</h3>
+                    <p>Interactive form handling and dynamic functionality.</p>
+                    </div>
+                  
+                    <div class="card">
+                    <img src="/Skills /IMG_20251021_120112_050.jpg" alt="Adobe Premiere" class="skill-img">
+                    <h3>PHP to Database Activity</h3>
+                    <p>Seamless data processing and database integration.</p>
+                    </div>
+                     
+                    <div class="card">
+                    <img src="/Skills /Screenshot_20260418-130953.png" alt="Adobe Premiere" class="skill-img">
+                    <h3>Business Simulation in Microsoft Excel</h3>
+                    <p>Experience with Canva, Figma, and visual storytelling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="/Project /Screenshot_20251027-181954_1.png" alt="T-shirt Layout">
+                    <h3>Banner</h3>
+                    <p>Designed a visually engaging banner using Adobe Photoshop, focusing on branding consistency and high-quality digital output.</p>
+                </div>
+                
+                <div class="card">
+                    <img src="/Project /Screenshot_20251027-182131_1.png" alt="Handheld System">
+                    <h3>Product Design</h3>
+                    <p>Created a modern product design using Adobe Photoshop, emphasizing layout composition, visual appeal, and user-focused presentation.</p>
+                </div>
+                
+                <div class="card">
+                    <img src="/Project /Screenshot_20251028-203259_1.png" alt="Handheld System">
+                    <h3>Shirt Layout</h3>
+                    <p>Developed a detailed shirt layout using Adobe Photoshop, integrating creative concepts with precise design and print-ready formatting.</p>
+                </div>
+                
+                <div class="card">
+                    <img src="/Project /Screenshot_20251028-202831_1.png" alt="Handheld System">
+                    <h3>Chessboard Board </h3>
+                    <p>Designed a visually engaging banner using Adobe Photoshop, focusing on branding consistency and high-quality digital output.</p>
+                </div>
+                
+<div class="card">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/PFIMz564rCI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3>Short Film</h3>
+                <p>Crafted a compelling short film using Adobe Premiere Pro.</p>
+            </div>
+
+            <div class="card">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/ZZqQyKXNoyI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3>Music Video</h3>
+                <p>Edited and directed a dynamic music video using Adobe Premiere Pro.</p>
+            </div>
+
+            <div class="card">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/mpVK1C_vDtE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3>History of Igorot</h3>
+                <p>Developed an informative video on the History of Igorot using CapCut.</p>
+            </div>
+
+            <div class="card">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/1ZEQzd7pU08" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3>Privacy Awareness</h3>
+                <p>Produced an educational Privacy Awareness video focused on digital safety.</p>
+            </div>
+            </section>
+            <section id="outputs-tutorials" class="section">
+    <div class="container">
+        <div style="display: flex; gap: 3rem; flex-wrap: wrap; align-items: flex-start;">
+
+            <div style="flex: 2; min-width: 350px;">
+                <h2 class="section-title">Tutorials</h2>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div class="card">
+                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/nNPFRDyugBw" frameborder="0" allowfullscreen></iframe>
+                        <h3>Canva Hack</h3>
+                    </div>
+                    <div class="card">
+                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/MYBz9mcxec8" frameborder="0" allowfullscreen></iframe>
+                        <h3>Photoshop Banner</h3>
+                    </div>
+                    <div class="card">
+                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/s5pmb6Nv-Us" frameborder="0" allowfullscreen></iframe>
+                        <h3>GitHub Hosting</h3>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h2 class="section-title">Outputs</h2>
+                <ul class="output-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <a href="https://www.canva.com/design/DAGuOrSlrYk/iIbQv0dtikl2nOm8zvCVdQ/edit" target="_blank">Handheld System Implementation</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <a href="https://www.canva.com/design/DAGyO5KQ8kM/1LnIzrZMvRFGZgrFQFQyTQ/edit" target="_blank">The Three New AI</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <a href="https://www.canva.com/design/DAGvkkupgCw/Xbqb14surP8uVKVB1-yKAw/edit" target="_blank">Common Problems of OS</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <a href="https://www.figma.com/proto/24Iir7s3JTOxc0ycbqySKN/Food-website" target="_blank">Figma E-Commerce</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="certificates" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Certificates</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="/Certificates /IMG_20260319_164748_357.jpg" alt="Certificate">
+                    <h3>Integrative Foundation for Innovative Systemic Solution</h3>
+                    <p>Completed March 18, 2026</p>
+                </div>
+                    <div class="card">
+                    <img src="/Certificates /IMG_20260319_164847_598.jpg" alt="Certificate">
+                    <h3>CISCO Networking Fundamentals</h3>
+                    <p>Completed March 12, 2026</p>
+                    </div>
+                    
+                   <div class="card">
+                    <img src="/Certificates /IMG_20260319_164907_443.jpg" alt="Certificate">
+                    <h3>Training Workshop on the Creation and Utilization of Official Digital Store through Social Media Platforms and Mobile Application for Marketing</h3>
+                    <p>Completed August 02,2025</p>
+                </div>
+                
+                <div class="card">
+                    <img src="/Certificates /IMG_20260319_164935_680.jpg" alt="Certificate">
+                    <h3>IT Seminar</h3>
+                    <p>Completed March 05, 2026</p>
+                </div>
+                <div class="card">
+                    <img src="/Certificates /Screenshot_20260218-224842.png" alt="Certificate">
+                    <h3>Digital Safety and Security Awareness</h3> <p></p>
+                </div>
+            </div>
+            
+        </div>
+
+    </section>
+
+    <section id="contact" class="section">
+    <div class="container">
+        <h2 class="section-title">Contacts</h2>
+        <div class="contact-grid">
+            <div class="contact-links">
+                <a href="https://www.facebook.com/share/1JBQmhyDvJ/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="mailto:elyzahpearlbarcoma@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://www.instagram.com/itsmeelyzah_pearll" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="tel:+639510685045"><i class="fas fa-phone"></i> +63 951 068 5045</a>
+            </div>
+            <form id="contactForm" class="feedback-form">
+                <h3>Send Feedback</h3>
+                <input type="text" placeholder="Your Name" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section>
+<button class="chatbot-toggler">
+    <i class="fas fa-robot"></i>
+</button>
+
+<div class="chatbot">
+    <header>
+        <h3>EPB Assistant</h3>
+    </header>
+    <ul class="chatbox">
+        <li class="chat incoming">
+            <span class="fas fa-robot"></span>
+            <p>Hi Elyzah's guest! How can I help you today?</p>
+        </li>
+    </ul>
+    <div class="chat-input">
+        <textarea placeholder="Ask about Elyzah..." required></textarea>
+        <span id="send-btn" class="fas fa-paper-plane" style="line-height: 40px; cursor: pointer; color: #1abc9c;"></span>
+    </div>
+</div>
+</section>
+
+    <a href="#home" id="scrollTop"><i class="fas fa-arrow-up"></i></a>
+
+    <footer>
+        <p>© 2026 Elyzah Pearl Barcoma | BSIT Student CPSU</p>
+    </footer>
+
+    <script>
+    const chatbotToggler = document.querySelector(".chatbot-toggler");
+const chatInput = document.querySelector(".chat-input textarea");
+const sendChatBtn = document.querySelector(".chat-input span");
+const chatbox = document.querySelector(".chatbox");
+
+// --- DRAGGABLE LOGIC ---
+let isDragging = false;
+let offsetX, offsetY;
+
+chatbotToggler.addEventListener("mousedown", (e) => {
+    isDragging = false; // Reset dragging flag on click
+    offsetX = e.clientX - chatbotToggler.getBoundingClientRect().left;
+    offsetY = e.clientY - chatbotToggler.getBoundingClientRect().top;
+    
+    const onMouseMove = (e) => {
+        isDragging = true; // If the mouse moves, we are dragging
+        chatbotToggler.style.left = `${e.clientX - offsetX}px`;
+        chatbotToggler.style.top = `${e.clientY - offsetY}px`;
+        chatbotToggler.style.right = 'auto'; // Disable default right/bottom positioning
+        chatbotToggler.style.bottom = 'auto';
+    };
+
+    document.addEventListener("mousemove", onMouseMove);
+
+    document.addEventListener("mouseup", () => {
+        document.removeEventListener("mousemove", onMouseMove);
+    }, { once: true });
+});
+
+// Prevent the chat from toggling if the user was just dragging the icon
+chatbotToggler.addEventListener("click", (e) => {
+    if (isDragging) {
+        e.preventDefault();
+    } else {
+        document.body.classList.toggle("show-chatbot");
+    }
+});
+
+// --- CHAT LOGIC (Integrated CV & Portfolio) ---
+const createChatLi = (message, className) => {
+    const chatLi = document.createElement("li");
+    chatLi.classList.add("chat", className);
+    let chatContent = className === "outgoing" ? `<p></p>` : `<span class="fas fa-robot"></span><p></p>`;
+    chatLi.innerHTML = chatContent;
+    chatLi.querySelector("p").textContent = message;
+    return chatLi;
+}
+
+const handleChat = () => {
+    const userMessage = chatInput.value.trim().toLowerCase();
+    if(!userMessage) return;
+    chatInput.value = "";
+
+    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+    
+    setTimeout(() => {
+        let response = "I'm not sure, but Elyzah is an IT student skilled in development and design! ";
+
+        if (userMessage.includes("who") || userMessage.includes("about")) {
+            response = "Elyzah Pearl L. Barcoma is a 2nd-year BSIT student at CPSU Moises Padilla Campus. ";
+        } 
+        else if (userMessage.includes("skill") || userMessage.includes("tech")) {
+            response = "She is skilled in HTML, CSS, JavaScript, and UI/UX Design. ";
+        }
+        else if (userMessage.includes("honor") || userMessage.includes("gwa")) {
+            response = "She earned 'With Honors' with a GWA of 1.56 during her first year. ";
+        }
+        else if (userMessage.includes("project") || userMessage.includes("work")) {
+            response = "Her projects include music videos, short stories, and birthday tarpaulin designs. ";
+        }
+        else if (userMessage.includes("contact") || userMessage.includes("email")) {
+            response = "You can reach her at elyzahpearlbarcoma@gmail.com or +63 951 068 5045. ";
+        }
+        else if (userMessage.includes("cert") || userMessage.includes("train")) {
+            response = "She has certifications in CISCO Networking Fundamentals and IT Systemic Solutions. ";
+        }
+        else if (userMessage.includes("Hi") || userMessage.includes("train")) {
+            response = "Hello! Good day😁";
+        }
+
+        chatbox.appendChild(createChatLi(response, "incoming"));
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+    }, 600);
+}
+
+sendChatBtn.addEventListener("click", handleChat);
+chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleChat();
+    }
+});
+        // Handle Scroll to Top Button Visibility
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        };
+
+        // Form Submission Alert
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your feedback! Elyzah will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
