@@ -121,15 +121,6 @@
             box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
         }
 
-        /* CV BUTTON */
-.cv-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #2C3E50;
-  color: #fff;
-  border-radius: 6px;
-  text-decoration: none;
 }
         /* Section Styling */
         .section {
@@ -155,6 +146,24 @@
             background: #2C3E50;
             margin-top: 8px;
         }
+        /* CV BUTTON */
+.cv-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 0.8rem 2rem;
+    background: #2c3e50;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cv-btn:hover {
+    background: #1abc9c;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
+}
 
         /* Grid Layouts */
         .grid {
@@ -419,7 +428,9 @@
             <div class="hero-content">
                 <h1>Hi, I’m Elyzah Pearl Barcoma</h1>
                 <p>IT Student of CPSU Moises Padilla</p>
-                 <a href="Resume-My CV .pdf" download class="cv-btn">📄 Download My CV</a>
+                 <a href="My CV .pdf" download class="cv-btn">
+        <i class="fas fa-file-download"></i> Download My CV
+    </a>
             </div>
         </div>
     </section>
