@@ -715,7 +715,6 @@ Beyond development, I leverage tools like Figma, Adobe Photoshop, and Adobe Prem
            <form action="https://formspree.io/f/mwvawazv" method="POST" id="contactForm" class="feedback-form">
     <h3>Send Feedback</h3>
     <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
     <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
     <button type="submit" class="btn">Submit</button> <br><br>
 </form>
@@ -860,18 +859,35 @@ window.onload = () => {
     }, 1000);
 };
         // --- 3. FORM SUBMISSION WITH TOAST NOTIFICATION ---
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent page reload
-
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
     const toast = document.getElementById('toast');
-    
-    // 1. Show the toast
-    toast.classList.add('show');
+    const toastMessage = document.getElementById('toast-message');
+    const data = new FormData(form);
 
-    // 2. Reset the form
-    this.reset();
+    // Send the data via Fetch API
+    const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
 
-    // 3. Hide the toast after 3.5 seconds
+    if (response.ok) {
+        // Success
+        toastMessage.innerText = "Feedback sent successfully!";
+        toast.style.background = "#1abc9c";
+        toast.classList.add('show');
+        form.reset();
+    } else {
+        // Error
+        toastMessage.innerText = "Oops! There was a problem.";
+        toast.style.background = "#e74c3c"; // Red for error
+        toast.classList.add('show');
+    }
+
     setTimeout(() => {
         toast.classList.remove('show');
     }, 3500);
