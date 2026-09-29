@@ -41,7 +41,6 @@ The portfolio showcases my experience and learning activities involving:
 - HTML
 - CSS
 - JavaScript
-- Font Awesome
 
 ## Installation / Usage
 
